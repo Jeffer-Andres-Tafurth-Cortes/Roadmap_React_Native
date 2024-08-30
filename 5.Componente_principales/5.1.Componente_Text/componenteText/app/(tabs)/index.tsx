@@ -1,70 +1,91 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { useState } from "react";
+import { Text, StyleSheet, View } from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+// En este componente se va a mostrar todo lo relacionado al componente 'Text'
 export default function HomeScreen() {
+
+  // Se utiliza 'useState' para manejar el estado de un componente 'Text' en el componente de titulo
+  const [titleText, setTitleText] = useState(" Bird's Nest ")
+  const bodyText = 'This is not really a bird nest.'
+
+  // Se puede agregar un funcion de presiona a un componente 'Text' el evento a usar es 'onPress'
+  const onPressTitle = () => {
+    setTitleText(" Bird's Nest [pressed] ")
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    // Se utiliza 'Text' para mostrar el texto en pantalla y asi mismo de puede animar varios componentes 'Text' 
+    <Text style={styles.baseText}>
+      <Text style={styles.titleText} onPress={onPressTitle}>
+        {titleText}
+        {'\n'}
+        {'\n'}
+      </Text>
+      <Text numberOfLines={5}>{bodyText}</Text>
+      {'\n'}
+
+      {/** Se puede usar 'Text' dentro de otro 'Text' para darle estilos a varios componentes 'Text' */}
+      <Text style={styles2.baseText}>
+        I am bold{' '}
+        <Text style={styles2.innerText}>and red </Text>
+      </Text>
+
+      {/** Los elementos dentro de un 'Text' no adquieren propiedades Flexbox  */}
+      <View>
+        <Text>First part and </Text>
+        <Text>Second part</Text>
+      </View>
+
+      {/** Manera erronea de determinar un texto */}
+      <View>
+        Some text
+      </View>
+
+      {/** Manera correcta de determinar un texto */}
+      <View>
+        <Text>Some text</Text>
+      </View>
+      {'\n'}
+      {'\n'}
+      <View>
+        <Text>
+          Text styled with the default font for the entire application
+        </Text>
+        <MyAppHeaderText />
+      </View>
+
+
+    </Text>
+
   );
 }
 
+// Con 'StyleSheet' de React Native podemos dar diseños por defecto a diferentes componentes usando la propiedad 'style'
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  baseText: {
+    fontFamily: 'Cochin'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+})
+
+const styles2 = StyleSheet.create({
+  baseText: {
+    fontWeight: 'bold'
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+  innerText: {
+    color: 'red'
+  }
+})
+
+
+// Aqui se define el componente 'MyAppHeaderText'
+function MyAppHeaderText (){
+  return(
+    <Text style={{ fontSize:20 }}>
+      Text from MyAppHeaderText
+    </Text>
+  )
+}
