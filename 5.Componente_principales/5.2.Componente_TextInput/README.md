@@ -1,0 +1,5 @@
+# COMPONENTE TEXT INPUT
+- Cuando hablamos de un componente 'TextInput' nos referimos a un componente en donde se puede ingresar texto mediante el teclado. Los accesorios brindan la posibilidad de configurar varias funciones, como correccion automatica, uso automatico de mayusculas, texto de marcador de posicion y diferentes tipos de teclado, como un teclado numerico.
+- El caso de uso mas basico es colocar un 'TextInput' y suscribirse a los 'onChangeText' eventos para leer la entrada del usuario. Tambien hay otros eventos, como 'onSubmitEditing' y 'onFocus' a los que se puede suscribir
+- Dos metodo expuestos a traves de los nativos son .focus() y .blur() que enfocaran o desenfocaran los TexInputs automaticamente
+- Los estilos del borde que se aplican solo a unlado del elemento(por ejemplo, borderBottomColor, borderLeftWidth, etc) no se aplicaran si la propiedad multiline=true

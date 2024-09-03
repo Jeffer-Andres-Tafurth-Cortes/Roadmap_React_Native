@@ -41,7 +41,23 @@
 - dataDetectorType -> este determina los tipos de datos que se convierten en URL en los que se pueden hacer click en el elemento del texto, pero de manera predeterminada no detecta ningun tipo de datos, solo de puede propocionar un tipo de dato (este seria asi: { enum('phoneNumber', 'link', 'email', 'none', 'all'), default: 'none  } )
 - disabled -> este especifica el estado deshabilitado de la vista de texto para fines de prueba (este seria asi: { type: boolean, default: false } )
 - dynamicTypeRamp -> la rampa de tipo dinamico que se aplicara a este elemento en iOS (este seria asi: { enum('caption2', 'caption1', 'footnote', 'subheadline', 'callout', 'body', 'headline', 'title3', 'title2', 'title1', 'largeTitle'), default: 'body' } )
-- ellipsizeMode -> 
+- ellipsizeMode -> cuando numberOfLines se establece, esta propiedad define como se truncaran el texto, esto puede definir valores como head, middle, tail y clip (este seria asi: { type:enum('head', 'middle', 'tail', 'clip'), default: tail } )
+- id -> Se utiliza para localizar esta vista desde el codigo nativo, tiene propiedades sobre la prop de nativeID (este es de tipo string)
+- maxFontMultiplier -> especifica la escala maxima posible que puede alcanzar una fuente cuando allowFontScaling esta habilitada, esta puede tener varios valores: null/undefined, 0 y >=1 (este seria asi: { type: string, default: undefined } )
+-  minimunFontScale -> Especifica la escala mas pequeña posible que puede alcanzar una fuente cuando adjustFontSizeToFit esta habilitada, los valores que puede tomar son: 0.01 - 1.0 (este es de tipo number)
+- nativeID -> Se utiliza para localizar esta vista desde el codigo nativo (este es de tipo string)
+- numberOfLines -> Se usa para truncar el texto con puntos suspensivos despues de calcular el diseño del texto, incluido el ajuste de linea, de modo que la cantidad total de lineas no supere este numero. Si se establece esta propiedad en, 0 se anulara la configuracion (este seria asi: { type: number, default: 0 } )
+- onLayout -> se invoca al montar y al cambiar el diseño (este seria asi: { type: ({nativeEvent: LayoutEvent}) => void } )
+- onLongPress -> este evento llama una funcion que se llama mantener presionada la tecla (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onMoveShouldSetResponder -> este evento se aplica a cada movimiento de toque en el 'View' que no es el que responde (este seria asi: { type: ({nativeEvent: PressEvent}) => boolean })
+- onPress -> este evento llama una funcion cuando el usuario presiona y activada despues de onPressOut (este seria asi: type: ({nativeEvent: PressEvent }) => void )
+- onPressIn -> este evento se llama inmediatamente cuando se activa un toque, antes onPressOut y onPress (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onPressOut -> este evento se llama cuando se suelta un toque (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onResponderGrant -> la vista ahora responde a los eventos tactiles. Es el momento de resaltar y mostrar al usuariolo que esta sucediendo (este seria asi: { type: ({nativeEvent: PressEvent}) => void | boolean })
+- onResponderMove -> el usuario esta moviendo su dedo (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onResponderRelease -> despedido al final del toque (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onResponderTerminate -> el respondedor ha sido tomado de 'View'. Esto es posible qque otras vistas lo tomen despues de una llamada a onResponderTerminationRequest, o que el SO lo tome sin preguntar (este seria asi: { type: ({nativeEvent: PressEvent}) => void })
+- onResponderTerminationRequest -> otro 'View' quiere convertirse en un respondedor y pide que 'View' se libere a su respondedor. El regreso es true y permite su liberacion (este seria asi: { type: ({nativeEvent: PressEvent}) => boolean })
  
 > [!NOTE]
 > - Se puede crear una base de diseños a implementar en los componentes en React Native, para ello se hace uso de 'StyleSheet' que se importa y a su vez se debe de crear una constante aparte para definir los diversos diseños
