@@ -5,3 +5,8 @@
 ## PROPS
 - onPress -> el evento 'onPress' es requerido ya que se use un componente 'Button' es el encargado de controlar el llamado cuando el usuario de clic (este seria asi: { type: ({nativeEvent: PressEvent}) })
 - title -> este atributo es requerido ya que mostrata el texto dentro del componente 'Button' (este es de tipo string)
+- accesibilityLabel -> es para mostrar texto de acuerdo a la funcion del componente
+- disabled -> esta propiedad se usa cuando es requerido que un 'Button' este deshabilitado
+
+> [!NOTE]
+> - Lo que es el evento 'onPress' y la prop 'title' si o si se deben se usar cuando se defina un componente 'Button' 
